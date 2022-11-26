@@ -16,7 +16,6 @@ public class Weapon : ObjectPool<Bullet>
             bullet.transform.position = shootPoint.position;
             bullet.transform.rotation = transform.rotation;
             bullet.gameObject.SetActive(true);
-            bullet.StartMove();
         }
     }
 }
