@@ -6,32 +6,36 @@ public class Bullet : MonoBehaviour
 
 	private float _speed;
 	private float _pastDistance;
-	private Vector3 _lastPosition;
 
 	public BulletData Data => _bulletData;
 
 	private void Start()
 	{
 		_speed = _bulletData.Speed;
-		_lastPosition = transform.position;
 	}
 
 	private void Update()
 	{
-        transform.Translate(transform.forward * _speed * Time.deltaTime);
+		Vector3 lastPosition = transform.position;
 
-        _pastDistance += Mathf.Abs((transform.position - _lastPosition).magnitude);
-		_lastPosition = transform.position;
+        transform.Translate(transform.forward * _speed * Time.deltaTime, Space.World);
+
+        _pastDistance += Mathf.Abs((transform.position - lastPosition).magnitude);
 
 		if (_pastDistance >= _bulletData.FlightRange)
 		{
-			_pastDistance = 0;
-            gameObject.SetActive(false);
+			Destroy();
         }
 	}
 
 	private void OnTriggerEnter(Collider other)
 	{
-		gameObject.SetActive(false);
+		Destroy();
 	}
+
+	private void Destroy()
+	{
+		_pastDistance = 0;
+		gameObject.SetActive(false);
+    }
 }

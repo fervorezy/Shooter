@@ -14,7 +14,7 @@ public class Weapon : ObjectPool<Bullet>
         if (TryGetDisabledObject(out Bullet bullet))
         {
             bullet.transform.position = shootPoint.position;
-            bullet.transform.rotation = transform.rotation;
+            bullet.transform.rotation = shootPoint.rotation;
             bullet.gameObject.SetActive(true);
         }
     }
