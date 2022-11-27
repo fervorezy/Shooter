@@ -18,4 +18,9 @@ public class Weapon : ObjectPool<Bullet>
             bullet.gameObject.SetActive(true);
         }
     }
+
+    public void Reload()
+    {
+
+    }
 }

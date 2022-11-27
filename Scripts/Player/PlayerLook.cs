@@ -5,7 +5,7 @@ public class PlayerLook : MonoBehaviour
     [SerializeField] private float _rotateSpeed;
     [SerializeField] private float _minClamp;
     [SerializeField] private float _maxClamp;
-    [SerializeField] private Player _player;
+    [SerializeField] private Camera _camera;
 
     private Vector2 _cameraRotation;
     private Vector2 _playerRotation;
@@ -23,9 +23,9 @@ public class PlayerLook : MonoBehaviour
         float scaledRotateSpeed = _rotateSpeed * Time.deltaTime;
         
         _cameraRotation.x = Mathf.Clamp(_cameraRotation.x - rotate.y * scaledRotateSpeed, _minClamp, _maxClamp);
-        transform.localEulerAngles = _cameraRotation;
+        _camera.transform.localEulerAngles = _cameraRotation;
 
         _playerRotation.y += rotate.x * scaledRotateSpeed;
-        _player.transform.localEulerAngles = _playerRotation;
+        transform.localEulerAngles = _playerRotation;
     }
 }
