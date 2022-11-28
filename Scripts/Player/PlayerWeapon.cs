@@ -23,4 +23,9 @@ public class PlayerWeapon : MonoBehaviour
     {
         _currentWeapon.Shoot(_shootPoint);
     }
+
+    public void Reload()
+    {
+        _currentWeapon.Reload();
+    }
 }

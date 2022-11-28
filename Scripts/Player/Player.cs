@@ -20,8 +20,12 @@ public class Player : MonoBehaviour
         _visibility = GetComponent<PlayerLook>();
         _movement = GetComponent<PlayerMovement>();
         _weapon = GetComponent<PlayerWeapon>();
+    }
 
+    private void Start()
+    {
         _input.Player.Shoot.performed += ctx => _weapon.Shoot();
+        _input.Player.Reload.performed += ctx => _weapon.Reload();
     }
 
     private void Update()

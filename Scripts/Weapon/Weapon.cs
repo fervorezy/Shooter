@@ -50,9 +50,20 @@ public class Weapon : ObjectPool<Bullet>
             // reload animation
 
             int loadedBulletCount = _maxBulletCount - _currentBulletCount;
-            _totalBulletCount -= loadedBulletCount;
-            _currentBulletCount += loadedBulletCount;
+
+            if (loadedBulletCount <= _totalBulletCount)
+            {
+                _totalBulletCount -= loadedBulletCount;
+                _currentBulletCount += loadedBulletCount;
+            }
+            else
+            {
+                _currentBulletCount += _totalBulletCount;
+                _totalBulletCount = 0;
+            }
+            
             BulletCountChanged?.Invoke(_currentBulletCount, _totalBulletCount);
+            Debug.Log("Reload");
         }
         //else
         //    animation or sound and no ammo message
