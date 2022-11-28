@@ -10,7 +10,9 @@ public class PlayerWeapon : MonoBehaviour
     private Weapon _currentWeapon;
     private List<Weapon> _weapons = new List<Weapon>();
 
-    private void Start()
+    public Weapon CurrentWeapon => _currentWeapon;
+
+    private void Awake()
     {
         _currentWeapon = Instantiate(_startWeapon, _weaponPoint.position,
             Quaternion.identity, _weaponPoint.transform);
