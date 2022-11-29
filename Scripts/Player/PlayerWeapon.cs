@@ -1,22 +1,35 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerWeapon : MonoBehaviour
 {
     [SerializeField] private Weapon _startWeapon;
     [SerializeField] private Transform _weaponPoint;
     [SerializeField] private Transform _shootPoint;
+    [SerializeField] private Weapon _secondWeapon;
 
     private Weapon _currentWeapon;
+    private int _currentWeaponNumber = 0;
     private List<Weapon> _weapons = new List<Weapon>();
 
-    public Weapon CurrentWeapon => _currentWeapon;
+    public event UnityAction<Weapon> WeaponChanged;
 
     private void Awake()
     {
         _currentWeapon = Instantiate(_startWeapon, _weaponPoint.position,
             Quaternion.identity, _weaponPoint.transform);
         _weapons.Add(_currentWeapon);
+
+        _secondWeapon = Instantiate(_secondWeapon, _weaponPoint.position,
+            Quaternion.identity, _weaponPoint.transform);
+        _secondWeapon.gameObject.SetActive(false);
+        _weapons.Add(_secondWeapon);
+    }
+
+    private void Start()
+    {
+        WeaponChanged?.Invoke(_currentWeapon);
     }
 
     public void Shoot()
@@ -27,5 +40,54 @@ public class PlayerWeapon : MonoBehaviour
     public void Reload()
     {
         _currentWeapon.Reload();
+    }
+
+    public void SelectNextWeapon()
+    {
+        if (_currentWeaponNumber == _weapons.Count - 1)
+            _currentWeaponNumber = 0;
+        else
+            _currentWeaponNumber++;
+
+        SetCurrentWeapon(_weapons[_currentWeaponNumber]);
+    }
+
+    public void SelectPreviousWeapon()
+    {
+        if (_currentWeaponNumber == 0)
+            _currentWeaponNumber = _weapons.Count - 1;
+        else
+            _currentWeaponNumber--;
+
+        SetCurrentWeapon(_weapons[_currentWeaponNumber]);
+    }
+
+    public void SelectPistol()
+    {
+        int weaponNumber = 0;
+
+        SelectWeapon(weaponNumber);
+    }
+
+    public void SelectSMG()
+    {
+        int weaponNumber = 1;
+
+        SelectWeapon(weaponNumber);
+    }
+
+    private void SelectWeapon(int weaponNumber)
+    {
+        if (_currentWeapon != _weapons[weaponNumber])
+            SetCurrentWeapon(_weapons[weaponNumber]);
+    }
+
+    private void SetCurrentWeapon(Weapon weapon)
+    {
+        _currentWeapon.gameObject.SetActive(false);
+
+        _currentWeapon = weapon;
+        WeaponChanged?.Invoke(_currentWeapon);
+        _currentWeapon.gameObject.SetActive(true);
     }
 }

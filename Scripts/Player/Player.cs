@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     private PlayerWeapon _weapon;
     private Vector2 _direction;
     private Vector2 _rotate;
+    private float mouseScroll;
 
     private void Awake()
     {
@@ -26,6 +27,9 @@ public class Player : MonoBehaviour
     {
         _input.Player.Shoot.performed += ctx => _weapon.Shoot();
         _input.Player.Reload.performed += ctx => _weapon.Reload();
+        _input.Player.SelectWeapon.performed += ctx => mouseScroll = ctx.ReadValue<float>();
+        _input.Player.SelectWeaponPistol.performed += ctx => _weapon.SelectPistol();
+        _input.Player.SelectWeaponSMG.performed += ctx => _weapon.SelectSMG();
     }
 
     private void Update()
@@ -35,5 +39,10 @@ public class Player : MonoBehaviour
 
         _visibility.Look(_rotate);
         _movement.Move(_direction);
+
+        if (mouseScroll > 0)
+            _weapon.SelectNextWeapon();
+        else if (mouseScroll < 0)
+            _weapon.SelectPreviousWeapon();
     }
 }

@@ -62,6 +62,33 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectWeapon"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""094e358c-93e8-4407-9db8-090730fdc843"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectWeaponPistol"",
+                    ""type"": ""Button"",
+                    ""id"": ""43468397-454a-4673-a0b1-f55600ab2f6a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectWeaponSMG"",
+                    ""type"": ""Button"",
+                    ""id"": ""04ce4ee5-db2c-4fa5-833c-e27b905352e9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -152,6 +179,39 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""Reload"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4bc75b69-c094-4bc8-b04e-504dde5b5d70"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse and Keyboard"",
+                    ""action"": ""SelectWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9b9b7882-6a12-4b19-8e4f-41eb2715b86d"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse and Keyboard"",
+                    ""action"": ""SelectWeaponPistol"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f1292f08-d051-4aa9-847f-7b8e93c9901b"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse and Keyboard"",
+                    ""action"": ""SelectWeaponSMG"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -192,6 +252,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
         m_Player_Reload = m_Player.FindAction("Reload", throwIfNotFound: true);
+        m_Player_SelectWeapon = m_Player.FindAction("SelectWeapon", throwIfNotFound: true);
+        m_Player_SelectWeaponPistol = m_Player.FindAction("SelectWeaponPistol", throwIfNotFound: true);
+        m_Player_SelectWeaponSMG = m_Player.FindAction("SelectWeaponSMG", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -255,6 +318,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Shoot;
     private readonly InputAction m_Player_Reload;
+    private readonly InputAction m_Player_SelectWeapon;
+    private readonly InputAction m_Player_SelectWeaponPistol;
+    private readonly InputAction m_Player_SelectWeaponSMG;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -263,6 +329,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
         public InputAction @Reload => m_Wrapper.m_Player_Reload;
+        public InputAction @SelectWeapon => m_Wrapper.m_Player_SelectWeapon;
+        public InputAction @SelectWeaponPistol => m_Wrapper.m_Player_SelectWeaponPistol;
+        public InputAction @SelectWeaponSMG => m_Wrapper.m_Player_SelectWeaponSMG;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -284,6 +353,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Reload.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReload;
                 @Reload.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReload;
                 @Reload.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReload;
+                @SelectWeapon.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeapon;
+                @SelectWeapon.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeapon;
+                @SelectWeapon.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeapon;
+                @SelectWeaponPistol.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeaponPistol;
+                @SelectWeaponPistol.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeaponPistol;
+                @SelectWeaponPistol.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeaponPistol;
+                @SelectWeaponSMG.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeaponSMG;
+                @SelectWeaponSMG.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeaponSMG;
+                @SelectWeaponSMG.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeaponSMG;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -300,6 +378,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Reload.started += instance.OnReload;
                 @Reload.performed += instance.OnReload;
                 @Reload.canceled += instance.OnReload;
+                @SelectWeapon.started += instance.OnSelectWeapon;
+                @SelectWeapon.performed += instance.OnSelectWeapon;
+                @SelectWeapon.canceled += instance.OnSelectWeapon;
+                @SelectWeaponPistol.started += instance.OnSelectWeaponPistol;
+                @SelectWeaponPistol.performed += instance.OnSelectWeaponPistol;
+                @SelectWeaponPistol.canceled += instance.OnSelectWeaponPistol;
+                @SelectWeaponSMG.started += instance.OnSelectWeaponSMG;
+                @SelectWeaponSMG.performed += instance.OnSelectWeaponSMG;
+                @SelectWeaponSMG.canceled += instance.OnSelectWeaponSMG;
             }
         }
     }
@@ -328,5 +415,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
+        void OnSelectWeapon(InputAction.CallbackContext context);
+        void OnSelectWeaponPistol(InputAction.CallbackContext context);
+        void OnSelectWeaponSMG(InputAction.CallbackContext context);
     }
 }

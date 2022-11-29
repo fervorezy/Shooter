@@ -266,6 +266,7 @@ MonoBehaviour:
   _startWeapon: {fileID: 4347208958934093354, guid: db94f4e071a624f40a3ee0c975add60f, type: 3}
   _weaponPoint: {fileID: 1561382805}
   _shootPoint: {fileID: 1264145644}
+  _secondWeapon: {fileID: 4347208958934093354, guid: d22758092a849504e8c9c54f653504f5, type: 3}
 --- !u!114 &260801162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -547,7 +548,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c0fd4326312891045ac655a19d7c5fcd, type: 2}
+  - {fileID: 2100000, guid: e6305dfe166516244922a0aabca092cc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -17,7 +17,13 @@ public class Weapon : ObjectPool<Bullet>
         _currentBulletCount = _maxBulletCount;
         _totalBulletCount = _currentBulletCount * 2;
 
-        Initialize(WeaponData.Bullet, WeaponData.BulletCount);
+        int poolBulletCount = 10;
+        Initialize(WeaponData.Bullet, poolBulletCount);
+    }
+
+    private void OnEnable()
+    {
+        BulletCountChanged?.Invoke(_currentBulletCount, _totalBulletCount);
     }
 
     private void Start()
