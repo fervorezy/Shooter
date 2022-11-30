@@ -6,7 +6,6 @@ public class PlayerWeapon : MonoBehaviour
 {
     [SerializeField] private Weapon _startWeapon;
     [SerializeField] private Transform _weaponPoint;
-    [SerializeField] private Transform _shootPoint;
     [SerializeField] private Weapon _secondWeapon;
 
     private Weapon _currentWeapon;
@@ -34,7 +33,7 @@ public class PlayerWeapon : MonoBehaviour
 
     public void Shoot()
     {
-        _currentWeapon.Shoot(_shootPoint);
+        _currentWeapon.Shoot();
     }
 
     public void Reload()
@@ -64,22 +63,28 @@ public class PlayerWeapon : MonoBehaviour
 
     public void SelectPistol()
     {
-        int weaponNumber = 0;
+        string weaponName = "Pistol";
 
-        SelectWeapon(weaponNumber);
+        SelectWeapon(weaponName);
     }
 
     public void SelectSMG()
     {
-        int weaponNumber = 1;
+        string weaponName = "SMG";
 
-        SelectWeapon(weaponNumber);
+        SelectWeapon(weaponName);
     }
 
-    private void SelectWeapon(int weaponNumber)
+    private void SelectWeapon(string name)
     {
-        if (_currentWeapon != _weapons[weaponNumber])
-            SetCurrentWeapon(_weapons[weaponNumber]);
+        if (_currentWeapon.Data.Name != name)
+        {
+            foreach (Weapon weapon in _weapons)
+            {
+                if (weapon.Data.Name == name)
+                    SetCurrentWeapon(weapon);
+            }
+        }
     }
 
     private void SetCurrentWeapon(Weapon weapon)

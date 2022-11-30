@@ -3,22 +3,27 @@ using UnityEngine.Events;
 
 public class Weapon : ObjectPool<Bullet>
 {
-	[SerializeField] protected WeaponData WeaponData;
+	[SerializeField] private WeaponData _weaponData;
+    [SerializeField] private Transform _shootPoint;
 
     private int _maxBulletCount;
     private int _currentBulletCount;
     private int _totalBulletCount;
+    private string _bulletPoolContainerName;
+
+    public WeaponData Data => _weaponData;
 
     public event UnityAction<int, int> BulletCountChanged;
 
     public void Awake()
     {
-        _maxBulletCount = WeaponData.BulletCount;
+        _maxBulletCount = _weaponData.BulletCount;
         _currentBulletCount = _maxBulletCount;
         _totalBulletCount = _currentBulletCount * 2;
 
-        int poolBulletCount = 10;
-        Initialize(WeaponData.Bullet, poolBulletCount);
+        _bulletPoolContainerName = _weaponData.Name + "-BulletPoolContainer";
+        GameObject bulletPoolContainer = new GameObject(_bulletPoolContainerName);
+        Initialize(_weaponData.Bullet, bulletPoolContainer.transform, _weaponData.PoolBulletCount);
     }
 
     private void OnEnable()
@@ -31,14 +36,14 @@ public class Weapon : ObjectPool<Bullet>
         BulletCountChanged?.Invoke(_currentBulletCount, _totalBulletCount);
     }
 
-    public void Shoot(Transform shootPoint)
+    public void Shoot()
 	{
         if (_currentBulletCount > 0)
         {
             if (TryGetDisabledObject(out Bullet bullet))
             {
-                bullet.transform.position = shootPoint.position;
-                bullet.transform.rotation = shootPoint.rotation;
+                bullet.transform.position = _shootPoint.position;
+                bullet.transform.rotation = _shootPoint.rotation;
                 bullet.gameObject.SetActive(true);
 
                 _currentBulletCount--;

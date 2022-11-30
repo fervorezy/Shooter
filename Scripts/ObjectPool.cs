@@ -6,11 +6,11 @@ public class ObjectPool<Object> : MonoBehaviour where Object : MonoBehaviour
 {
 	private List<Object> _poolObjects = new List<Object>();
 
-	protected void Initialize(Object prefab, int capacity)
+	protected void Initialize(Object prefab, Transform container, int capacity)
 	{
 		for (int i = 0; i < capacity; i++)
 		{
-            Object spawnObject = Instantiate(prefab);
+            Object spawnObject = Instantiate(prefab, container);
 			spawnObject.gameObject.SetActive(false);
 
 			_poolObjects.Add(spawnObject);

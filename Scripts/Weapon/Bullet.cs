@@ -4,23 +4,17 @@ public class Bullet : MonoBehaviour
 {
 	[SerializeField] private BulletData _bulletData;
 
-	private float _speed;
 	private float _pastDistance;
-
-	public BulletData Data => _bulletData;
-
-	private void Start()
-	{
-		_speed = _bulletData.Speed;
-	}
 
 	private void Update()
 	{
 		Vector3 lastPosition = transform.position;
 
-        transform.Translate(transform.forward * _speed * Time.deltaTime, Space.World);
+        transform.Translate(transform.forward * _bulletData.Speed
+			* Time.deltaTime, Space.World);
 
-        _pastDistance += Mathf.Abs((transform.position - lastPosition).magnitude);
+		float pastDistanceMagnitude = (transform.position - lastPosition).magnitude;
+        _pastDistance += Mathf.Abs(pastDistanceMagnitude);
 
 		if (_pastDistance >= _bulletData.FlightRange)
 		{

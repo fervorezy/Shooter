@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f856701ba5104624ea731b88898bffaf, type: 3}
-  m_Name: Pistol
+  m_Name: SMG
   m_EditorClassIdentifier: 
-  _bulletCount: 7
+  _name: SMG
+  _poolBulletCount: 30
+  _bulletCount: 30
   _reloadTime: 4
   _rateFire: 2
-  _bullet: {fileID: 6196985484593657254, guid: aa3fb43e928e2b947a1badd0d1c77b68, type: 3}
+  _bullet: {fileID: 6196985484593657254, guid: 1579c1e446de96c4fb63cb2361c7256f, type: 3}
