@@ -1,14 +1,14 @@
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerLook))]
-[RequireComponent(typeof(PlayerMovement))]
-[RequireComponent(typeof(PlayerWeapon))]
-public class Player : MonoBehaviour
+[RequireComponent(typeof(CharacterLook))]
+[RequireComponent(typeof(CharacterMovement))]
+[RequireComponent(typeof(CharacterWeapon))]
+public class CharacterInput : MonoBehaviour
 {
     private PlayerInput _input;
-    private PlayerLook _visibility;
-    private PlayerMovement _movement;
-    private PlayerWeapon _weapon;
+    private CharacterLook _visibility;
+    private CharacterMovement _movement;
+    private CharacterWeapon _weapon;
     private Vector2 _direction;
     private Vector2 _rotate;
     private float mouseScroll;
@@ -18,9 +18,9 @@ public class Player : MonoBehaviour
         _input = new PlayerInput();
         _input.Enable();
 
-        _visibility = GetComponent<PlayerLook>();
-        _movement = GetComponent<PlayerMovement>();
-        _weapon = GetComponent<PlayerWeapon>();
+        _visibility = GetComponent<CharacterLook>();
+        _movement = GetComponent<CharacterMovement>();
+        _weapon = GetComponent<CharacterWeapon>();
     }
 
     private void Start()

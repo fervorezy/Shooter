@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bdeabf8ca9a2d494697cc4f45c6af19c
+guid: 1961ef0ecc83d524c90f19106d6ca232
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
@@ -437,7 +437,7 @@ ModelImporter:
     second: SK_FP_CH_Default
   - first:
       74: 7400000
-    second: A_FP_PCH_Handgun_Unholster
+    second: Character_Pistol_Reload
   - first:
       95: 9500000
     second: //RootNode
@@ -474,11 +474,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: A_FP_PCH_Handgun_Unholster
+      name: Character_Pistol_Reload
       takeName: Scene
       internalID: 0
       firstFrame: 0
-      lastFrame: 28
+      lastFrame: 67
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -496,10 +496,69 @@ ModelImporter:
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
+      curves:
+      - name: Alpha Breathing
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.09046455
+            value: -1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.7848411
+            value: -1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.89242053
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
       events:
-      - time: 0.2404692
-        functionName: OnAnimationEndedHolster
+      - time: 0.6327684
+        functionName: OnWeaponReloadEnded
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.5186916
+        functionName: OnAmmoLoaded
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -508,7 +567,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 28
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []

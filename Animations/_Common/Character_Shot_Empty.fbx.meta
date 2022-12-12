@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7358a4bdadd43b445b699645a2d9a1e7
+guid: ac4c302108621c14294ac65e8477101a
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
@@ -431,13 +431,13 @@ ModelImporter:
     second: upperarm_twist_01_r
   - first:
       21: 2100000
-    second: Arms
+    second: M_Arms
   - first:
       43: 4300000
     second: SK_FP_CH_Default
   - first:
       74: 7400000
-    second: A_FP_PCH_Handgun_Holster
+    second: Character_Shot_Empty
   - first:
       95: 9500000
     second: //RootNode
@@ -474,11 +474,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: A_FP_PCH_Handgun_Holster
+      name: Character_Shot_Empty
       takeName: Scene
       internalID: 0
       firstFrame: 0
-      lastFrame: 23
+      lastFrame: 25
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -497,14 +497,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0.57453847
-        functionName: OnAnimationEndedHolster
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

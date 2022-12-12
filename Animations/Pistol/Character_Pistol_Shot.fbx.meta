@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 08f6dd1ba7528b944847abc00740e80d
+guid: 2613f806b0b3c254e81855c97b89bbcf
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
@@ -431,13 +431,13 @@ ModelImporter:
     second: upperarm_twist_01_r
   - first:
       21: 2100000
-    second: M_Arms
+    second: Arms
   - first:
       43: 4300000
     second: SK_FP_CH_Default
   - first:
       74: 7400000
-    second: A_FP_PCH_Aim_Idle
+    second: Character_Pistol_Shot
   - first:
       95: 9500000
     second: //RootNode
@@ -474,19 +474,19 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: A_FP_PCH_Aim_Idle
+      name: Character_Pistol_Shot
       takeName: Scene
       internalID: 0
       firstFrame: 0
-      lastFrame: 400
+      lastFrame: 22
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 1
-      loopTime: 1
-      loopBlend: 1
+      loopTime: 0
+      loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 1

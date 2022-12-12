@@ -437,7 +437,7 @@ ModelImporter:
     second: SK_FP_CH_Default
   - first:
       74: 7400000
-    second: A_FP_PCH_Idle
+    second: Character_Idle
   - first:
       95: 9500000
     second: //RootNode
@@ -474,7 +474,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: A_FP_PCH_Idle
+      name: Character_Idle
       takeName: Scene
       internalID: 0
       firstFrame: 0

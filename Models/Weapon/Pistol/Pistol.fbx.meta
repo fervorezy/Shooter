@@ -1,29 +1,29 @@
 fileFormatVersion: 2
 guid: 40cb849895dd45645ac3fadcc88190af
 ModelImporter:
-  serializedVersion: 20200
+  serializedVersion: 21300
   internalIDToNameTable:
   - first:
       74: 7390685452417663121
     second: A_WEP_Handgun_03_Reference
   - first:
       74: -4736269018783579773
-    second: A_FP_WEP_Handgun_03_Reload
+    second: Pistol_Reload
   - first:
       74: -882397832086714528
-    second: A_FP_WEP_Handgun_03_Reload_Empty
+    second: Pistol_Reload_Empty
   - first:
       74: -6189740055242518571
-    second: A_TP_WEP_Handgun_03_Reload
+    second: Pistol_Reload_TP
   - first:
       74: -2602495036530805752
-    second: A_TP_WEP_Handgun_03_Reload_Empty
+    second: Pistol_Reload_Empty_TP
   - first:
       74: 2844201171150616281
-    second: A_WEP_Handgun_03_Fire
+    second: Pistol_Shot
   - first:
       74: -5539812402604222577
-    second: A_WEP_Handgun_03_Slide_Back_Pose
+    second: Pistol_Slide_Back_Pose
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -60,6 +60,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 0
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -78,7 +79,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: A_WEP_Handgun_03_Reference
+      name: Pistol_Pose
       takeName: SKEL_Handgun_03|_Ref_Pose
       internalID: 0
       firstFrame: 0
@@ -107,7 +108,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: A_FP_WEP_Handgun_03_Reload
+      name: Pistol_Reload_FP
       takeName: SKEL_Handgun_03|A_FP_WEP_Handgun_03_Reload
       internalID: 0
       firstFrame: 0
@@ -136,7 +137,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: A_FP_WEP_Handgun_03_Reload_Empty
+      name: Pistol_Reload_Empty_FP
       takeName: SKEL_Handgun_03|A_FP_WEP_Handgun_03_Reload_Empty
       internalID: 0
       firstFrame: 0
@@ -165,7 +166,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: A_TP_WEP_Handgun_03_Reload
+      name: Pistol_Reload_TP
       takeName: SKEL_Handgun_03|A_TP_WEP_Handgun_03_Reload
       internalID: 0
       firstFrame: 0
@@ -194,7 +195,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: A_TP_WEP_Handgun_03_Reload_Empty
+      name: Pistol_Reload_Empty_TP
       takeName: SKEL_Handgun_03|A_TP_WEP_Handgun_03_Reload_Empty
       internalID: 0
       firstFrame: 0
@@ -223,7 +224,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: A_WEP_Handgun_03_Fire
+      name: Pistol_Shot
       takeName: SKEL_Handgun_03|A_WEP_Handgun_03_Fire
       internalID: 0
       firstFrame: 0
@@ -252,7 +253,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: A_WEP_Handgun_03_Slide_Back_Pose
+      name: Pistol_Slide_Back_Pose
       takeName: SKEL_Handgun_03|A_WEP_Handgun_03_Slide_Back_Pose
       internalID: 0
       firstFrame: 0
@@ -292,6 +293,7 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    nodeNameCollisionStrategy: 0
     fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
@@ -303,6 +305,7 @@ ModelImporter:
     skinWeightsMode: 0
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
+    optimizeBones: 1
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
@@ -345,6 +348,7 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

@@ -437,7 +437,7 @@ ModelImporter:
     second: SK_FP_CH_Default
   - first:
       74: 7400000
-    second: A_FP_PCH_Handgun_Aim_Pose
+    second: Character_Pistol_Aim_Pose
   - first:
       95: 9500000
     second: //RootNode
@@ -446,7 +446,7 @@ ModelImporter:
     second: SK_FP_CH_Default
   externalObjects: {}
   materials:
-    materialImportMode: 1
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -474,7 +474,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: A_FP_PCH_Handgun_Aim_Pose
+      name: Character_Pistol_Aim_Pose
       takeName: Scene
       internalID: 0
       firstFrame: 0

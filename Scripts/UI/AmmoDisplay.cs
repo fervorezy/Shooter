@@ -5,7 +5,7 @@ public class AmmoDisplay : MonoBehaviour
 {
 	[SerializeField] private TMP_Text _currentBulletCountDisplay;
 	[SerializeField] private TMP_Text _totalBulletCountDisplay;
-	[SerializeField] private PlayerWeapon _playerWeapon;
+	[SerializeField] private CharacterWeapon _playerWeapon;
 
 	private Weapon _currentWeapon;
 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1961ef0ecc83d524c90f19106d6ca232
+guid: ad53682c39777e44583e3b5d6a3a37c3
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
@@ -437,7 +437,7 @@ ModelImporter:
     second: SK_FP_CH_Default
   - first:
       74: 7400000
-    second: A_FP_PCH_Handgun_Reload
+    second: Character_Pistol_Reload_Empty
   - first:
       95: 9500000
     second: //RootNode
@@ -474,11 +474,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: A_FP_PCH_Handgun_Reload
+      name: Character_Pistol_Reload_Empty
       takeName: Scene
       internalID: 0
       firstFrame: 0
-      lastFrame: 67
+      lastFrame: 82
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -550,15 +550,22 @@ ModelImporter:
           postInfinity: 3
           rotationOrder: 4
       events:
-      - time: 0.6327684
+      - time: 0.70621467
         functionName: OnAnimationEndedReload
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.5186916
+      - time: 0.42990655
         functionName: OnAmmunitionFill
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.58691764
+        functionName: OnSlideBack
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

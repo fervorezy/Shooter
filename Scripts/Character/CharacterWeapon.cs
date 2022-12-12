@@ -2,7 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerWeapon : MonoBehaviour
+[RequireComponent(typeof(CharacterAnimator))]
+public class CharacterWeapon : MonoBehaviour
 {
     [SerializeField] private Weapon _startWeapon;
     [SerializeField] private Transform _weaponPoint;
@@ -11,13 +12,15 @@ public class PlayerWeapon : MonoBehaviour
     private Weapon _currentWeapon;
     private int _currentWeaponNumber = 0;
     private List<Weapon> _weapons = new List<Weapon>();
+    private CharacterAnimator _animator;
 
     public event UnityAction<Weapon> WeaponChanged;
 
     private void Awake()
     {
-        _currentWeapon = Instantiate(_startWeapon, _weaponPoint.position,
-            Quaternion.identity, _weaponPoint.transform);
+        _animator = GetComponent<CharacterAnimator>();
+
+        _currentWeapon = Instantiate(_startWeapon, _weaponPoint);
         _weapons.Add(_currentWeapon);
 
         _secondWeapon = Instantiate(_secondWeapon, _weaponPoint.position,
@@ -34,11 +37,15 @@ public class PlayerWeapon : MonoBehaviour
     public void Shoot()
     {
         _currentWeapon.Shoot();
+
+        _animator.PlayShotAnimation();
     }
 
     public void Reload()
     {
         _currentWeapon.Reload();
+
+        _animator.PlayReloadAnimation();
     }
 
     public void SelectNextWeapon()

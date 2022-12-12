@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0bd5170972f02c9498bbf3a1e7eb6992
+guid: ea6d984b0ce8e2842af48178ee2c22af
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
@@ -437,7 +437,7 @@ ModelImporter:
     second: SK_FP_CH_Default
   - first:
       74: 7400000
-    second: A_FP_PCH_Handgun_Idle_Pose
+    second: Character_Pistol_Shot_Aim
   - first:
       95: 9500000
     second: //RootNode
@@ -474,11 +474,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: A_FP_PCH_Handgun_Idle_Pose
+      name: Character_Pistol_Shot_Aim
       takeName: Scene
       internalID: 0
       firstFrame: 0
-      lastFrame: 1
+      lastFrame: 22
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

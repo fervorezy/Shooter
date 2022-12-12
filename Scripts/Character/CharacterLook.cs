@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerLook : MonoBehaviour
+public class CharacterLook : MonoBehaviour
 {
     [SerializeField] private float _rotateSpeed;
     [SerializeField] private float _minClamp;
