@@ -5,15 +5,17 @@ using UnityEngine.Events;
 [RequireComponent(typeof(WeaponAnimator))]
 public class Weapon : ObjectPool<Bullet>
 {
-	[SerializeField] private WeaponData _weaponData;
+	[SerializeField] private WeaponData _data;
     [SerializeField] private Transform _shootPoint;
 
+    private int _bulletCount;
     private int _maxBulletCount;
-    private int _currentBulletCount;
     private int _totalBulletCount;
+    private bool _reloading = false;
     private WeaponAnimator _animator;
 
-    public WeaponData Data => _weaponData;
+    public WeaponData Data => _data;
+    public bool IsEmptyMagazine => _bulletCount == 0;
 
     public event UnityAction<int, int> BulletCountChanged;
     public event UnityAction<AudioClip> ActionSoundStarted;
@@ -22,85 +24,122 @@ public class Weapon : ObjectPool<Bullet>
     {
         _animator = GetComponent<WeaponAnimator>();
 
-        _maxBulletCount = _weaponData.BulletCount;
-        _currentBulletCount = _maxBulletCount;
-        _totalBulletCount = _currentBulletCount * 10;
+        _maxBulletCount = _data.BulletCount;
+        _bulletCount = _maxBulletCount;
+        _totalBulletCount = _bulletCount * 10;
 
-        string bulletPoolContainerName = _weaponData.Name + "_BulletPoolContainer";
+        string bulletPoolContainerName = _data.Name + "_BulletPoolContainer";
         GameObject bulletPoolContainer = new GameObject(bulletPoolContainerName);
 
-        Initialize(_weaponData.Bullet, bulletPoolContainer.transform, _weaponData.PoolBulletCount);
+        Initialize(_data.Bullet, bulletPoolContainer.transform, _data.PoolBulletCount);
     }
 
     private void OnEnable()
     {
-        BulletCountChanged?.Invoke(_currentBulletCount, _totalBulletCount);
+        BulletCountChanged?.Invoke(_bulletCount, _totalBulletCount);
     }
 
     private void Start()
     {
-        BulletCountChanged?.Invoke(_currentBulletCount, _totalBulletCount);
+        BulletCountChanged?.Invoke(_bulletCount, _totalBulletCount);
     }
 
-    public void Shoot()
+    public bool TryShoot()
+    {
+        if (CanShoot())
+        {
+            Shoot();
+
+            return true;
+        }
+
+        return false;
+    }
+
+    private void Shoot()
 	{
-        if (_currentBulletCount > 0)
+        if (TryGetDisabledObject(out Bullet bullet))
         {
-            if (TryGetDisabledObject(out Bullet bullet))
-            {
-                bullet.transform.position = _shootPoint.position;
-                bullet.transform.rotation = _shootPoint.rotation;
-                bullet.gameObject.SetActive(true);
+            bullet.transform.position = _shootPoint.position;
+            bullet.transform.rotation = _shootPoint.rotation;
+            bullet.gameObject.SetActive(true);
 
-                _currentBulletCount--;
+            _bulletCount--;
 
-                ActionSoundStarted?.Invoke(_weaponData.Shot);
-                _animator.PlayAnimation(_weaponData.ShotAnimationName);
-                BulletCountChanged?.Invoke(_currentBulletCount, _totalBulletCount);
-            }
+            ActionSoundStarted?.Invoke(_data.Shot);
+            _animator.PlayAnimation(_data.ShotAnimationName);
+            BulletCountChanged?.Invoke(_bulletCount, _totalBulletCount);
         }
-        else
+    }
+
+    private bool CanShoot()
+    {
+        return _bulletCount > 0 && _reloading == false;
+    }
+
+    public bool TryReload()
+    {
+        if (CanReload())
         {
-            // need coroutine or replace reload mb
-            ActionSoundStarted?.Invoke(_weaponData.ShotEmpty);
             Reload();
+
+            return true;
         }
+
+        return false;
     }
 
-    public void Reload()
+    private void Reload()
     {
-        if (_totalBulletCount > 0 && _currentBulletCount < _maxBulletCount)
+        _reloading = true;
+
+        if (IsEmptyMagazine)
         {
-            int loadedBulletCount = _maxBulletCount - _currentBulletCount;
-
-            LoadAmmo(loadedBulletCount);
-
-            if (loadedBulletCount == _maxBulletCount)
-            {
-                ActionSoundStarted?.Invoke(_weaponData.ReloadEmpty);
-                _animator.PlayAnimation(_weaponData.ReloadEmptyAnimationName);
-            }
-            else
-            {
-                ActionSoundStarted?.Invoke(_weaponData.Reload);
-                _animator.PlayAnimation(_weaponData.ReloadAnimationName);
-            }
-
-            BulletCountChanged?.Invoke(_currentBulletCount, _totalBulletCount);
-        }
-    }
-
-    private void LoadAmmo(int bulletCount)
-    {
-        if (bulletCount <= _totalBulletCount)
-        {
-            _totalBulletCount -= bulletCount;
-            _currentBulletCount += bulletCount;
+            ActionSoundStarted?.Invoke(_data.ReloadEmpty);
+            _animator.PlayAnimation(_data.ReloadEmptyAnimationName);
         }
         else
         {
-            _currentBulletCount += _totalBulletCount;
+            ActionSoundStarted?.Invoke(_data.Reload);
+            _animator.PlayAnimation(_data.ReloadAnimationName);
+        }
+    }
+
+    private bool CanReload()
+    {
+        return _totalBulletCount > 0 && _bulletCount < _maxBulletCount && _reloading == false;
+    }
+
+    public void OnAmmoLoaded()
+    {
+        int loadedBulletCount = _maxBulletCount - _bulletCount;
+
+        if (loadedBulletCount <= _totalBulletCount)
+        {
+            _totalBulletCount -= loadedBulletCount;
+            _bulletCount += loadedBulletCount;
+        }
+        else
+        {
+            _bulletCount += _totalBulletCount;
             _totalBulletCount = 0;
         }
+
+        BulletCountChanged?.Invoke(_bulletCount, _totalBulletCount);
+    }
+
+    public void OnWeaponReloadEnded()
+    {
+        _reloading = false;
+    }
+
+    public void OnEjectCasing()
+    {
+
+    }
+
+    public void OnSlideBack()
+    {
+
     }
 }

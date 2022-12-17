@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c44bf773e9a7c8d4493396f4a81a6a93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponData: {fileID: 11400000, guid: 6bd8e121263b5ec41aeccbb3bc999da4, type: 2}
+  _data: {fileID: 11400000, guid: 6bd8e121263b5ec41aeccbb3bc999da4, type: 2}
   _shootPoint: {fileID: 4350818953377191203}
 --- !u!114 &6381945319779695505
 MonoBehaviour:

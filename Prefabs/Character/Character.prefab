@@ -780,7 +780,7 @@ GameObject:
   - component: {fileID: 2359937606572043114}
   - component: {fileID: 2684480318129865480}
   - component: {fileID: 8772145059500710802}
-  - component: {fileID: 6173851120328917330}
+  - component: {fileID: 1376230972}
   m_Layer: 3
   m_Name: Character
   m_TagString: Player
@@ -894,7 +894,7 @@ MonoBehaviour:
   _startWeapon: {fileID: 4350818953020074485, guid: db94f4e071a624f40a3ee0c975add60f, type: 3}
   _weaponPoint: {fileID: 591233790}
   _secondWeapon: {fileID: 7687955261998578211, guid: d22758092a849504e8c9c54f653504f5, type: 3}
---- !u!114 &6173851120328917330
+--- !u!114 &1376230972
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -903,12 +903,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2751027687307977091}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 669fdca6f10dd16428fa372554f25308, type: 3}
+  m_Script: {fileID: 11500000, guid: b649ccf27a7784045bda19555032cea5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _shotStateName: Shot
   _shotCrossFadeDuration: 0.05
   _reloadStateName: Reload
+  _reloadEmptyStateName: Reload_Empty
   _overlayLayerName: Overlay
   _actionsLayerName: Actions
 --- !u!1 &2906013363015915789

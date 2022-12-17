@@ -25,8 +25,8 @@ public class CharacterInput : MonoBehaviour
 
     private void Start()
     {
-        _input.Player.Shoot.performed += ctx => _weapon.Shoot();
-        _input.Player.Reload.performed += ctx => _weapon.Reload();
+        _input.Player.Shoot.performed += ctx => _weapon.TryShoot();
+        _input.Player.Reload.performed += ctx => _weapon.TryReload();
         _input.Player.SelectWeapon.performed += ctx => mouseScroll = ctx.ReadValue<float>();
         _input.Player.SelectWeaponPistol.performed += ctx => _weapon.SelectPistol();
         _input.Player.SelectWeaponSMG.performed += ctx => _weapon.SelectSMG();

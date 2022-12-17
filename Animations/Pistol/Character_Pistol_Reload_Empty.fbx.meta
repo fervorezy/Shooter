@@ -551,14 +551,14 @@ ModelImporter:
           rotationOrder: 4
       events:
       - time: 0.70621467
-        functionName: OnAnimationEndedReload
+        functionName: OnWeaponReloadEnded
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
       - time: 0.42990655
-        functionName: OnAmmunitionFill
+        functionName: OnAmmoLoaded
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

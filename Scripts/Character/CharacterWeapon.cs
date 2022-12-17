@@ -34,18 +34,20 @@ public class CharacterWeapon : MonoBehaviour
         WeaponChanged?.Invoke(_currentWeapon);
     }
 
-    public void Shoot()
+    public void TryShoot()
     {
-        _currentWeapon.Shoot();
-
-        _animator.PlayShotAnimation();
+        if (_currentWeapon.TryShoot() == true)
+            _animator.PlayShotAnimation();
+        else
+        {
+            TryReload();
+        }
     }
 
-    public void Reload()
+    public void TryReload()
     {
-        _currentWeapon.Reload();
-
-        _animator.PlayReloadAnimation();
+        if (_currentWeapon.TryReload() == true)
+            _animator.PlayReloadAnimation(_currentWeapon.IsEmptyMagazine);
     }
 
     public void SelectNextWeapon()
@@ -101,5 +103,20 @@ public class CharacterWeapon : MonoBehaviour
         _currentWeapon = weapon;
         WeaponChanged?.Invoke(_currentWeapon);
         _currentWeapon.gameObject.SetActive(true);
+    }
+
+    private void OnAmmoLoaded()
+    {
+        _currentWeapon.OnAmmoLoaded();
+    }
+
+    private void OnWeaponReloadEnded()
+    {
+        _currentWeapon.OnWeaponReloadEnded();
+    }
+
+    private void OnSlideBack()
+    {
+        _currentWeapon.OnSlideBack();
     }
 }
